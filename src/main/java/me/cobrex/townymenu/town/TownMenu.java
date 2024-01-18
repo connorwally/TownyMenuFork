@@ -1078,7 +1078,7 @@ public class TownMenu extends Menu {
 		private final Button setHomeBlockButton;
 		private final Button townBoardButton;
 		private final Button townNameButton;
-		private final Button townPeaceButton;
+		private final Button townNeutralButton;
 
 		private final ItemStack DUMMY_BUTTON = ItemCreator.of(CompMaterial.fromString(String.valueOf(Settings.FILLER_TOWN_GENERAL_SETTINGS_MENU)), "")
 				.modelData(Integer.valueOf(Settings.FILLER_TOWN_GENERAL_SETTINGS_MENU_CMD)).make();
@@ -1188,23 +1188,28 @@ public class TownMenu extends Menu {
 				}
 			};
 
-			townPeaceButton = new Button(){
+			townNeutralButton = new Button(){
 
 				@Override
 				public void onClickedInMenu(Player player, Menu menu, ClickType clickType) {
-					if (town.getMayor().getName().equals(player.getName()))
+					if (town.getMayor().getName().equals(player.getName())){
 						town.setNeutral(!town.isNeutral());
+						town.setPVP(!town.isPVP());
 						TownyAPI.getInstance().getDataSource().saveTown(town);
 						restartMenu();
+					}
 				}
 
 				@Override
 				public ItemStack getItem() {
-					return ItemCreator.of(HeadDatabaseUtil.HeadDataUtil.createItem(String.valueOf(Settings.TOGGLE_FIRE)))
-							.name(Localization.TownMenu.ToggleMenu.FIRE)
-							.modelData(Integer.valueOf(Settings.TOGGLE_FIRE_CMD))
+					return ItemCreator.of(HeadDatabaseUtil.HeadDataUtil.createItem(String.valueOf(Settings.TOGGLE_NEUTRAL)))
+							.name(Localization.TownMenu.GeneralSettingsMenu.NEUTRAL)
+							.modelData(Integer.valueOf(Settings.TOGGLE_NEUTRAL_CMD))
 							.lore("")
-							.lore("" + (town.isFire() ? Localization.TownMenu.ToggleMenu.TOGGLE_OFF : Localization.TownMenu.ToggleMenu.TOGGLE_ON)).make();
+							.lore("&7Peaceful mode increases")
+							.lore("&7upkeep by &c4x&7.")
+							.lore("")
+							.lore("" + (town.isNeutral() ? Localization.TownMenu.ToggleMenu.TOGGLE_OFF : Localization.TownMenu.ToggleMenu.TOGGLE_ON)).make();
 				}
 			};
 		}
@@ -1220,7 +1225,7 @@ public class TownMenu extends Menu {
 			if (slot == 7)
 				return townBoardButton.getItem();
 			if (slot == 8)
-				return townPeaceButton.getItem();
+				return townNeutralButton.getItem();
 
 			return DUMMY_BUTTON;
 		}

@@ -425,6 +425,7 @@ General_Settings_Menu:
     - ""
     - "Set the town board"
     - "of your town."
+  Neutral: "&a&lToggle Peacefulness"
 Extra_Info_Menu:
   Claiming: "&6&lClaiming Info"
   Claiming_Lore:

@@ -356,6 +356,9 @@ Set_Town_Board:
 Set_Town_Name:
   Item: NAME_TAG
   CustomModelData: 0
+Toggle_Neutral:
+  Item: GOLDEN_SWORD
+  CustomModelData: 0
 
 # Extra Town Info Menu:
 Town_Claim_Info:

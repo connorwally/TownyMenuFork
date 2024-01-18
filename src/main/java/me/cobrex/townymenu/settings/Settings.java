@@ -134,6 +134,8 @@ public final class Settings extends SimpleSettings {
 	public static Integer TOGGLE_EXPLOSIONS_CMD;
 	public static String TOGGLE_PVP;
 	public static Integer TOGGLE_PVP_CMD;
+	public static String TOGGLE_NEUTRAL;
+	public static Integer TOGGLE_NEUTRAL_CMD;
 	public static String TOGGLE_PUBLIC;
 	public static Integer TOGGLE_PUBLIC_CMD;
 	public static String TOGGLE_OPEN;
@@ -428,6 +430,8 @@ public final class Settings extends SimpleSettings {
 		TOGGLE_EXPLOSIONS_CMD = getInteger("Toggle_Explosions.CustomModelData", 0);
 		TOGGLE_PVP = getString("Toggle_PVP.Item");
 		TOGGLE_PVP_CMD = getInteger("Toggle_PVP.CustomModelData", 0);
+		TOGGLE_NEUTRAL = getString("Toggle_Neutral.Item");
+		TOGGLE_NEUTRAL_CMD = getInteger("Toggle_Neutral.CustomModelData", 0);
 		TOGGLE_PUBLIC = getString("Toggle_Public.Item");
 		TOGGLE_PUBLIC_CMD = getInteger("Toggle_Public.CustomModelData", 0);
 		TOGGLE_OPEN = getString("Toggle_Open.Item");
