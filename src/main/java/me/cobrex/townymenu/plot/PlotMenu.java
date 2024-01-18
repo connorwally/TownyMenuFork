@@ -34,7 +34,7 @@ import java.util.List;
 
 public class PlotMenu extends Menu {
 
-	private final Button toggleSettingsMenu;
+	//private final Button toggleSettingsMenu;
 	private final Button permMenuButton;
 	private final Button plotAdministrationMenuButton;
 	private final Button friendButton;
@@ -55,11 +55,11 @@ public class PlotMenu extends Menu {
 			if (res != null) allOnlineResidents.add(res);
 		}
 
-		toggleSettingsMenu = new ButtonMenu(new PlotToggleSettingsMenu(townBlock),
-				ItemCreator.of(HeadDatabaseUtil.HeadDataUtil.createItem(String.valueOf(Settings.PLOT_TOGGLE_MENU)))
-						.name(Localization.PlotMenu.TOGGLE_SETTINGS_MENU_BUTTON)
-						.modelData(Integer.valueOf(Settings.PLOT_TOGGLE_MENU_CMD))
-						.lore(Localization.PlotMenu.TOGGLE_SETTINGS_MENU_BUTTON_LORE));
+		//toggleSettingsMenu = new ButtonMenu(new PlotToggleSettingsMenu(townBlock),
+		//		ItemCreator.of(HeadDatabaseUtil.HeadDataUtil.createItem(String.valueOf(Settings.PLOT_TOGGLE_MENU)))
+		//				.name(Localization.PlotMenu.TOGGLE_SETTINGS_MENU_BUTTON)
+		//				.modelData(Integer.valueOf(Settings.PLOT_TOGGLE_MENU_CMD))
+		//				.lore(Localization.PlotMenu.TOGGLE_SETTINGS_MENU_BUTTON_LORE));
 
 		permMenuButton = new ButtonMenu(new PlotPermMenu(townBlock),
 				ItemCreator.of(HeadDatabaseUtil.HeadDataUtil.createItem(String.valueOf(Settings.PLOT_PERMISSIONS_MENU)))
@@ -84,13 +84,13 @@ public class PlotMenu extends Menu {
 
 	@Override
 	public ItemStack getItemAt(int slot) {
-		if (slot == 1)
-			return toggleSettingsMenu.getItem();
-		if (slot == 3)
+		//if (slot == 1)
+		//	return toggleSettingsMenu.getItem();
+		if (slot == 2)
 			return permMenuButton.getItem();
-		if (slot == 5)
+		if (slot == 4)
 			return plotAdministrationMenuButton.getItem();
-		if (slot == 7)
+		if (slot == 6)
 			return friendButton.getItem();
 
 		return DUMMY_BUTTON;

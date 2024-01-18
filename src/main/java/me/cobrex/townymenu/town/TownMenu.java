@@ -242,9 +242,9 @@ public class TownMenu extends Menu {
 	public ItemStack getItemAt(int slot) {
 		//if (slot == 2)
 		//	return toggleMenuButton.getItem();
-		if (slot == 4)
+		if (slot == 3)
 			return residentListButton.getItem();
-		if (slot == 6)
+		if (slot == 5)
 			return townyPermButton.getItem();
 		if (slot == 11)
 			return generalSettingsButton.getItem();
@@ -1078,7 +1078,7 @@ public class TownMenu extends Menu {
 		private final Button setHomeBlockButton;
 		private final Button townBoardButton;
 		private final Button townNameButton;
-		private final Button townNeutralButton;
+		//private final Button townNeutralButton;
 
 		private final ItemStack DUMMY_BUTTON = ItemCreator.of(CompMaterial.fromString(String.valueOf(Settings.FILLER_TOWN_GENERAL_SETTINGS_MENU)), "")
 				.modelData(Integer.valueOf(Settings.FILLER_TOWN_GENERAL_SETTINGS_MENU_CMD)).make();
@@ -1187,7 +1187,7 @@ public class TownMenu extends Menu {
 							.lore((List<String>) Localization.TownMenu.GeneralSettingsMenu.SET_BOARD_LORE).make();
 				}
 			};
-
+/*
 			townNeutralButton = new Button(){
 
 				@Override
@@ -1212,7 +1212,9 @@ public class TownMenu extends Menu {
 							.lore("" + (town.isNeutral() ? Localization.TownMenu.ToggleMenu.TOGGLE_OFF : Localization.TownMenu.ToggleMenu.TOGGLE_ON)).make();
 				}
 			};
+ */
 		}
+
 
 		@Override
 		public ItemStack getItemAt(int slot) {
@@ -1224,8 +1226,8 @@ public class TownMenu extends Menu {
 				return townNameButton.getItem();
 			if (slot == 7)
 				return townBoardButton.getItem();
-			if (slot == 8)
-				return townNeutralButton.getItem();
+			//if (slot == 6)
+			//	return townNeutralButton.getItem();
 
 			return DUMMY_BUTTON;
 		}

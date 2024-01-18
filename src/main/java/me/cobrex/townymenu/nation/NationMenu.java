@@ -190,17 +190,17 @@ public class NationMenu extends Menu {
 
 		//if (slot == 2)
 		//	return nationToggleButton.getItem();
-		if (slot == 4)
+		if (slot == 3)
 			return nationTownListButton.getItem();
-		if (slot == 6)
+		if (slot == 5)
 			return nationResidentListButton.getItem();
-		if (slot == 9 + 4 && Settings.ECONOMY_ENABLED)
+		if (slot == 9 + 2 && Settings.ECONOMY_ENABLED)
 			return nationEconomyButton.getItem();
-		if (slot == 9 * 2 + 2)
+		if (slot == 15)
 			return nationSettingsButton.getItem();
-		if (slot == 9 * 2 + 4)
+		if (slot == 9 * 2 + 3)
 			return inviteTownButton.getItem();
-		if (slot == 9 * 2 + 6)
+		if (slot == 9 * 2 + 5)
 			return nationExtraInfoButton.getItem();
 		return DUMMY_BUTTON;
 	}
