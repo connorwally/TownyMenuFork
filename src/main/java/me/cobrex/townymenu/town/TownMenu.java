@@ -42,7 +42,7 @@ public class TownMenu extends Menu {
 
 	// TODO set up discord, spigot
 
-	private final Button toggleMenuButton;
+	//private final Button toggleMenuButton;
 	private final Button residentListButton;
 	private final Button townyPermButton;
 	private final Button economyButton;
@@ -102,8 +102,8 @@ public class TownMenu extends Menu {
 				.modelData(Integer.valueOf(Settings.EXTRA_INFO_CMD))
 				.lore((List<String>) Localization.TownMenu.EXTRA_INFO_MENU_BUTTON_LORE);
 
-		toggleMenuButton = new
-				ButtonMenu(new ToggleSettingsMenu(town), toggleMenuItem);
+		//toggleMenuButton = new
+		//		ButtonMenu(new ToggleSettingsMenu(town), toggleMenuItem);
 
 		residentListButton = new
 				ButtonMenu(new ResidentListMenu(residentList), residentListItem);
@@ -240,8 +240,8 @@ public class TownMenu extends Menu {
 
 	@Override
 	public ItemStack getItemAt(int slot) {
-		if (slot == 2)
-			return toggleMenuButton.getItem();
+		//if (slot == 2)
+		//	return toggleMenuButton.getItem();
 		if (slot == 4)
 			return residentListButton.getItem();
 		if (slot == 6)
@@ -359,20 +359,29 @@ public class TownMenu extends Menu {
 						for (Player onlinePlayer : onlinePlayers) {
 							Resident onlinePlayerAsRes = TownyAPI.getInstance().getResident(onlinePlayer.getName());
 							if (onlinePlayerAsRes.hasTown()) {
-								if (!onlinePlayerAsRes.getTown().equals(town))
-									if (TownyAPI.getInstance().getTownBlock(onlinePlayer.getLocation()) != null)
+								try {
+									if (!onlinePlayerAsRes.getTown().equals(town))
+										if (TownyAPI.getInstance().getTownBlock(onlinePlayer.getLocation()) != null)
+											if (Objects.requireNonNull(TownyAPI.getInstance().getTownBlock(onlinePlayer.getLocation())).getTown().equals(town)) {
+												Common.tell(player, Localization.Error.TOGGLE_PVP_OUTSIDERS);
+												player.closeInventory();
+												return;
+											}
+								} catch (NotRegisteredException e) {
+									throw new RuntimeException(e);
+								}
+							} else {
+								if (TownyAPI.getInstance().getTownBlock(onlinePlayer.getLocation()) != null) {
+									try {
 										if (Objects.requireNonNull(TownyAPI.getInstance().getTownBlock(onlinePlayer.getLocation())).getTown().equals(town)) {
 											Common.tell(player, Localization.Error.TOGGLE_PVP_OUTSIDERS);
 											player.closeInventory();
 											return;
 										}
-							} else {
-								if (TownyAPI.getInstance().getTownBlock(onlinePlayer.getLocation()) != null)
-									if (Objects.requireNonNull(TownyAPI.getInstance().getTownBlock(onlinePlayer.getLocation())).getTown().equals(town)) {
-										Common.tell(player, Localization.Error.TOGGLE_PVP_OUTSIDERS);
-										player.closeInventory();
-										return;
+									} catch (NotRegisteredException e) {
+										throw new RuntimeException(e);
 									}
+								}
 							}
 						}
 					}
