@@ -1,3 +1,8 @@
+# Fork
+
+This fork is designed for a personal server, to change some functionality.
+I am removing many of the toggles, replacing all with only a peaceful toggle - this is the mechanic on my personal server.
+
 # Author
 
 This was originally written by bennycio  
