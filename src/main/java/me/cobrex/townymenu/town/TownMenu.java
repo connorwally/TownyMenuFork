@@ -1078,6 +1078,7 @@ public class TownMenu extends Menu {
 		private final Button setHomeBlockButton;
 		private final Button townBoardButton;
 		private final Button townNameButton;
+		private final Button townPeaceButton;
 
 		private final ItemStack DUMMY_BUTTON = ItemCreator.of(CompMaterial.fromString(String.valueOf(Settings.FILLER_TOWN_GENERAL_SETTINGS_MENU)), "")
 				.modelData(Integer.valueOf(Settings.FILLER_TOWN_GENERAL_SETTINGS_MENU_CMD)).make();
@@ -1186,6 +1187,26 @@ public class TownMenu extends Menu {
 							.lore((List<String>) Localization.TownMenu.GeneralSettingsMenu.SET_BOARD_LORE).make();
 				}
 			};
+
+			townPeaceButton = new Button(){
+
+				@Override
+				public void onClickedInMenu(Player player, Menu menu, ClickType clickType) {
+					if (town.getMayor().getName().equals(player.getName()))
+						town.setNeutral(!town.isNeutral());
+						TownyAPI.getInstance().getDataSource().saveTown(town);
+						restartMenu();
+				}
+
+				@Override
+				public ItemStack getItem() {
+					return ItemCreator.of(HeadDatabaseUtil.HeadDataUtil.createItem(String.valueOf(Settings.TOGGLE_FIRE)))
+							.name(Localization.TownMenu.ToggleMenu.FIRE)
+							.modelData(Integer.valueOf(Settings.TOGGLE_FIRE_CMD))
+							.lore("")
+							.lore("" + (town.isFire() ? Localization.TownMenu.ToggleMenu.TOGGLE_OFF : Localization.TownMenu.ToggleMenu.TOGGLE_ON)).make();
+				}
+			};
 		}
 
 		@Override
@@ -1198,6 +1219,8 @@ public class TownMenu extends Menu {
 				return townNameButton.getItem();
 			if (slot == 7)
 				return townBoardButton.getItem();
+			if (slot == 8)
+				return townPeaceButton.getItem();
 
 			return DUMMY_BUTTON;
 		}
