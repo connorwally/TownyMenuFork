@@ -35,7 +35,7 @@ import java.util.Objects;
 
 public class NationMenu extends Menu {
 
-	private final Button nationToggleButton;
+	//private final Button nationToggleButton;
 	private final Button nationTownListButton;
 	private final Button nationEconomyButton;
 	private final Button nationSettingsButton;
@@ -86,7 +86,7 @@ public class NationMenu extends Menu {
 				.modelData(Integer.valueOf(Settings.NATION_RESIDENT_MENU_CMD))
 				.lore((List<String>) Localization.NationMenu.NATION_RESIDENT_MENU_BUTTON_LORE);
 
-		nationToggleButton = new ButtonMenu(new NationToggleMenu(nation), toggleNationItem);
+		//nationToggleButton = new ButtonMenu(new NationToggleMenu(nation), toggleNationItem);
 		nationTownListButton = new ButtonMenu(new NationTownListMenu(nationTownList), nationTownListItem);
 		nationSettingsButton = new ButtonMenu(new NationSettingsMenu(nation), nationSettingsMenuItem);
 		inviteTownButton = new ButtonMenu(new InviteTownMenu(townList), townInviteMenuItem);
@@ -188,8 +188,8 @@ public class NationMenu extends Menu {
 	@Override
 	public ItemStack getItemAt(int slot) {
 
-		if (slot == 2)
-			return nationToggleButton.getItem();
+		//if (slot == 2)
+		//	return nationToggleButton.getItem();
 		if (slot == 4)
 			return nationTownListButton.getItem();
 		if (slot == 6)
@@ -478,7 +478,11 @@ public class NationMenu extends Menu {
 			skull.setOwningPlayer(player);
 			List<String> lore = new ArrayList<>();
 			lore.add("");
-			lore.add(ChatColor.translateAlternateColorCodes('&', Localization.NationMenu.NationResidentMenu.TOWN + item.getTown()));
+			try {
+				lore.add(ChatColor.translateAlternateColorCodes('&', Localization.NationMenu.NationResidentMenu.TOWN + item.getTown()));
+			} catch (NotRegisteredException e) {
+				throw new RuntimeException(e);
+			}
 //			lore.add(ChatColor.GRAY + Localization.NationMenu.NationResidentMenu.TOWN + item.getTown());
 			lore.add("");
 			lore.add(ChatColor.translateAlternateColorCodes('&', Localization.NationMenu.NationResidentMenu.ONLINE + TimeUtil.getFormattedDateShort(item.getLastOnline())));
